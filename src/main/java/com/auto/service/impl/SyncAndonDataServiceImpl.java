@@ -28,7 +28,7 @@ public class SyncAndonDataServiceImpl implements SyncAndonDataService{
 	@Autowired
 	private EventRecordService eventRecordService;
 	public void syncReadRecordFromAndon() throws Exception{
-		// TODO 同步数据
+		//  同步数据
 		List<EventRecord> recordList = new LinkedList<EventRecord>();
 		for (int i = 0; i < 3; i++) {
 			OpcItem item = new OpcItem("Channel1.Device1.vw10"+i, true, "");
@@ -46,15 +46,15 @@ public class SyncAndonDataServiceImpl implements SyncAndonDataService{
 			return false;
 		}
 		EventRecord record = eventRecordService.getLastRecord(item.getItemName());
-		if(record == null || !record.getEventType().equals(String.valueOf(item.getValue()))){
+		if(record == null || !record.getItemValue().equals(String.valueOf(item.getValue()))){
 			return true;
 		}
 		return false;
 	}
 	private EventRecord itemToEventRecord(OpcItem synchReadItem) {
 		EventRecord record = new EventRecord();
-		record.setGroupId(synchReadItem.getItemName());
-		record.setEventType(String.valueOf(synchReadItem.getValue()));
+		record.setItemId(synchReadItem.getItemName());
+		record.setItemValue(String.valueOf(synchReadItem.getValue()));
 		record.setCreateTime(synchReadItem.getTimeStamp().getTimeInMillis());
 		return record;
 	}

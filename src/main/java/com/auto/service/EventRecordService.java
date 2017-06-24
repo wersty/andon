@@ -10,5 +10,5 @@ public interface EventRecordService {
 	
 	void addEventRecordList(List<EventRecord> recordList);
 
-	EventRecord getLastRecord(String groupId);
+	EventRecord getLastRecord(String itemId);
 }

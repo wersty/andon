@@ -38,7 +38,7 @@ public class EventRecordServiceImpl implements EventRecordService{
 	}
 
 	@Override
-	public EventRecord getLastRecord(final String groupId) {
+	public EventRecord getLastRecord(final String itemId) {
 		java.util.List<Order> list = new ArrayList<Order>();
 		Order order = new Order(Direction.DESC, "createTime");
 		list.add(order);
@@ -49,11 +49,14 @@ public class EventRecordServiceImpl implements EventRecordService{
 			@Override
 			public Predicate toPredicate(Root<EventRecord> root,
 					CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate p=cb.equal(root.get("groupId").as(String.class), groupId);  
+				Predicate p=cb.equal(root.get("itemId").as(String.class), itemId);  
 				return p;
 			}
 		};
 		List<EventRecord> eventList = eventRecordDao.findAll(specification, sort);
+		if(eventList.isEmpty()){
+			return null;
+		}
 		return eventList.get(0);
 	}
 
