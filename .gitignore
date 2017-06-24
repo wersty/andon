@@ -1,0 +1,6 @@
+/target/
+*.svn-base
+*.svn-work
+.settings/
+*/.svn/*
+.classpath
