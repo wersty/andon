@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2017-06-24 22:30:43
+Date: 2017-06-26 00:11:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,12 +24,16 @@ CREATE TABLE `event_record` (
   `item_id` varchar(50) DEFAULT NULL,
   `item_value` varchar(50) DEFAULT NULL,
   `create_time` bigint(20) DEFAULT NULL,
+  `group_id` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of event_record
 -- ----------------------------
-INSERT INTO `event_record` VALUES ('153', 'Channel1.Device1.vw100', '101', '1498314598000');
-INSERT INTO `event_record` VALUES ('154', 'Channel1.Device1.vw101', '102', '1498314600000');
-INSERT INTO `event_record` VALUES ('155', 'Channel1.Device1.vw102', '103', '1498314602000');
+INSERT INTO `event_record` VALUES ('175', 'Channel1.Device1.vw100', '101', '1498406892000', '175');
+INSERT INTO `event_record` VALUES ('176', 'Channel1.Device1.vw101', '102', '1498406903000', '176');
+INSERT INTO `event_record` VALUES ('177', 'Channel1.Device1.vw102', '103', '1498406914000', '177');
+INSERT INTO `event_record` VALUES ('178', 'Channel1.Device1.vw102', '101', '1498406996000', '178');
+INSERT INTO `event_record` VALUES ('179', 'Channel1.Device1.vw100', '102', '1498406992000', '175');
+INSERT INTO `event_record` VALUES ('180', 'Channel1.Device1.vw101', '103', '1498406994000', '176');

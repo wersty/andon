@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "event_record")
 public class EventRecord implements java.io.Serializable {
-
+	
     /**
      * 
      */
@@ -28,6 +28,9 @@ public class EventRecord implements java.io.Serializable {
 
     @Column(name = "create_time")
     private long createTime;
+    
+    @Column(name = "group_id")
+    private Long groupId;
 
 	public Long getId() {
 		return id;
@@ -60,6 +63,14 @@ public class EventRecord implements java.io.Serializable {
 
 	public void setCreateTime(long createTime) {
 		this.createTime = createTime;
+	}
+
+	public Long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
 	}
     
     

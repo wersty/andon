@@ -16,6 +16,7 @@ import javafish.clients.opc.exception.CoInitializeException;
 import javafish.clients.opc.exception.ConnectivityException;
 import javafish.clients.opc.property.PropertyLoader;
 
+import com.auto.entity.EventItemValue;
 import com.auto.entity.EventRecord;
 import com.auto.manager.JOpcManager;
 import com.auto.service.EventRecordService;
@@ -34,28 +35,38 @@ public class SyncAndonDataServiceImpl implements SyncAndonDataService{
 			OpcItem item = new OpcItem("Channel1.Device1.vw10"+i, true, "");
 			OpcGroup group = new OpcGroup("Channel1.Device1", true, 500, 0.0f);
 			OpcItem synchReadItem = JOpcManager.synchReadItem(group, item);
-			if(canAdd(synchReadItem)){
-				recordList.add(this.itemToEventRecord(synchReadItem));
+			EventRecord lastRecord = eventRecordService.getLastRecord(item.getItemName());
+			if(canAdd(synchReadItem,lastRecord)){
+				if(lastRecord == null || (lastRecord != null 
+						&& EventItemValue.FINISHED.getItemValue().equals(lastRecord.getItemValue()))){
+					//一开始或上一条记录已经完成，开始下一组数据
+					EventRecord saveEventRecord = eventRecordService.saveEventRecord(this.itemToEventRecord(synchReadItem,null));
+					saveEventRecord.setGroupId(saveEventRecord.getId());
+					recordList.add(saveEventRecord);
+				}else{
+					recordList.add(this.itemToEventRecord(synchReadItem, lastRecord.getGroupId()));
+				}
 			}
 		}
 		//保存数据
-		eventRecordService.addEventRecordList(recordList);
+		eventRecordService.saveEventRecordList(recordList);
 	}
-	private boolean canAdd(OpcItem item) {
+	private boolean canAdd(OpcItem item, EventRecord record) {
 		if(item == null){
 			return false;
 		}
-		EventRecord record = eventRecordService.getLastRecord(item.getItemName());
+		
 		if(record == null || !record.getItemValue().equals(String.valueOf(item.getValue()))){
 			return true;
 		}
 		return false;
 	}
-	private EventRecord itemToEventRecord(OpcItem synchReadItem) {
+	private EventRecord itemToEventRecord(OpcItem synchReadItem, Long groupId) {
 		EventRecord record = new EventRecord();
 		record.setItemId(synchReadItem.getItemName());
 		record.setItemValue(String.valueOf(synchReadItem.getValue()));
 		record.setCreateTime(synchReadItem.getTimeStamp().getTimeInMillis());
+		record.setGroupId(groupId);
 		return record;
 	}
 }

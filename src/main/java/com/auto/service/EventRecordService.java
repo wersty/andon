@@ -6,9 +6,9 @@ import com.auto.entity.EventRecord;
 
 public interface EventRecordService {
 	
-	void addEventRecord(EventRecord record);
+	EventRecord saveEventRecord(EventRecord record);
 	
-	void addEventRecordList(List<EventRecord> recordList);
+	void saveEventRecordList(List<EventRecord> recordList);
 
 	EventRecord getLastRecord(String itemId);
 }

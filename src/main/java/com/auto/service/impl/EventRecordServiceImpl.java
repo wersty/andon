@@ -28,12 +28,12 @@ public class EventRecordServiceImpl implements EventRecordService{
 	private EventRecordDao eventRecordDao;
 	
 	@Override
-	public void addEventRecord(EventRecord record) {
-		eventRecordDao.save(record);
+	public EventRecord saveEventRecord(EventRecord record) {
+		return eventRecordDao.save(record);
 	}
 
 	@Override
-	public void addEventRecordList(List<EventRecord> recordList) {
+	public void saveEventRecordList(List<EventRecord> recordList) {
 		eventRecordDao.save(recordList);
 	}
 

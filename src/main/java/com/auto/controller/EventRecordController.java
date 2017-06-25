@@ -28,7 +28,7 @@ public class EventRecordController {
 	@RequestMapping("/addEventRecord")
 	@ResponseBody
 	public String adduser(EventRecord record) {
-		userService.addEventRecord(record);
+		userService.saveEventRecord(record);
 		return "add success!";
 	}
 }
