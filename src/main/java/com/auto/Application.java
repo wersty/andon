@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableScheduling
 public class Application {
 	
-	@RequestMapping("/hello")
-	public String hello(){
-		return "hello World!!!";
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

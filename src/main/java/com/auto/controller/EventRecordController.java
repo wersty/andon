@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.auto.entity.EventRecord;
 import com.auto.service.EventRecordService;
 
@@ -15,9 +15,9 @@ public class EventRecordController {
 	@Autowired
 	private EventRecordService userService;
 
-	@RequestMapping("/")
-	public String helloWorld() {
-		return "hello World";
+	@RequestMapping("/hello")
+	public ModelAndView helloWorld() {
+		return new ModelAndView("hello");
 	}
 	
 	/**
