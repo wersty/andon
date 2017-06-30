@@ -18,7 +18,7 @@ public class EventRecord implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "item_id")
     private String itemId;
@@ -30,13 +30,13 @@ public class EventRecord implements java.io.Serializable {
     private long createTime;
     
     @Column(name = "group_id")
-    private Long groupId;
+    private Integer groupId;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -65,11 +65,11 @@ public class EventRecord implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	public Long getGroupId() {
+	public Integer getGroupId() {
 		return groupId;
 	}
 
-	public void setGroupId(Long groupId) {
+	public void setGroupId(Integer groupId) {
 		this.groupId = groupId;
 	}
     

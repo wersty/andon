@@ -24,7 +24,7 @@ public class Scheduler {
     @Scheduled(fixedRate=50000)  
     public void testTasks() throws Exception {      
         logger.info("每5秒执行一次。开始……");  
-        syncAndonDataService.syncReadRecordFromAndon();
+        //syncAndonDataService.syncReadRecordFromAndon();
         logger.info("每5秒执行一次。结束。");  
     }    
 }  

@@ -61,7 +61,7 @@ public class SyncAndonDataServiceImpl implements SyncAndonDataService{
 		}
 		return false;
 	}
-	private EventRecord itemToEventRecord(OpcItem synchReadItem, Long groupId) {
+	private EventRecord itemToEventRecord(OpcItem synchReadItem, Integer groupId) {
 		EventRecord record = new EventRecord();
 		record.setItemId(synchReadItem.getItemName());
 		record.setItemValue(String.valueOf(synchReadItem.getValue()));

@@ -17,4 +17,7 @@ public interface EventRecordDao extends PagingAndSortingRepository<EventRecord, 
     @Query("from EventRecord t where id = :id")
     List<EventRecord> queryFamilyList(@Param("id") Long id, Pageable pageable);
 
+    @Query(value = "select * from event_record t where item_id = :itemId order by id desc limit 0,50",nativeQuery = true)
+    List<EventRecord> queryByGroup(@Param("itemId") String itemId);
+
 }
